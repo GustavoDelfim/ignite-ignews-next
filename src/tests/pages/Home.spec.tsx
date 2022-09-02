@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react"
-import { stripe } from '../services/stripe'
-import Home, { getStaticProps } from "../pages"
+import { stripe } from '../../services/stripe'
+import Home, { getStaticProps } from "../../pages"
 import { mocked } from "ts-jest/utils"
 
 jest.mock('next/router')
@@ -9,7 +9,7 @@ jest.mock('next-auth/react', () => {
     useSession: () => ({ data: null, status: "unauthenticated" })
   }
 })
-jest.mock('../services/stripe')
+jest.mock('../../services/stripe')
 
 describe("Home page", () => {
   test("active link renders correctly", () => {
