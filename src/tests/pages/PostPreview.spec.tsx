@@ -11,7 +11,7 @@ jest.mock('next-auth/react')
 jest.mock('next/router')
 jest.mock('../../services/prismic')
 
-describe("Post page", () => {
+describe("PostPreview page", () => {
   test("active link renders correctly", () => {
     const useSessionMocked = mocked(useSession)
     useSessionMocked.mockReturnValueOnce({ data: null, status: "unauthenticated" })
