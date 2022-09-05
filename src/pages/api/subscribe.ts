@@ -14,7 +14,7 @@ type User = {
   }
 }
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+async function subscribe (req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
     return res.status(405).end('Method not alowed');
@@ -36,10 +36,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   let customerId = user.data.stripe_customer_id
 
   if (!customerId) {
+    console.log('1')
     const stripeCustomer = await stripe.customers.create({
       email: session.user.email
     })
-
     await fauna.query(
       q.Update(
         q.Ref(q.Collection('users'), user.ref.id),
@@ -74,3 +74,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     res.status(500).end(err.message)
   }
 }
+
+export default subscribe

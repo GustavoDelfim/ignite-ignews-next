@@ -1,3 +1,4 @@
+import { Console } from 'console';
 import Stripe from 'stripe';
 import { version } from '../../package.json';
 
