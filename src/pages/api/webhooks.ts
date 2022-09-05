@@ -30,7 +30,7 @@ const relevantEvents = new Set([
   'customer.subscription.deleted'
 ])
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+async function handle (req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
     return res.status(405).end('Method not alowed');
@@ -70,7 +70,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           await saveSubscription(
             subscription.id,
             subscription.customer.toString(),
-            type === 'customer.subscription.created'
+            false
           )
 
           break;
@@ -86,3 +86,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   res.json({ received: true })
 }
+
+export default handle
