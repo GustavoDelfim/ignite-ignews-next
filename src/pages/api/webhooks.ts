@@ -32,8 +32,11 @@ const relevantEvents = new Set([
 
 async function handle (req: NextApiRequest, res: NextApiResponse) {
   if (!['POST', 'PUT', 'DELETE'].includes(req.method)) {
-    res.setHeader('Allow', 'POST');
-    return res.status(405).end('Method not alowed');
+    console.log('req.method', req)
+    
+    // res.setHeader('Allow', 'POST');
+    // return res.status(405).end('Method not alowed');
+    return res.redirect('/')
   }
 
   const buf = await buffer(req);
