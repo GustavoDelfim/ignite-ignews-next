@@ -31,7 +31,7 @@ const relevantEvents = new Set([
 ])
 
 async function handle (req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== 'POST') {
+  if (!['POST', 'PUT', 'DELETE'].includes(req.method)) {
     res.setHeader('Allow', 'POST');
     return res.status(405).end('Method not alowed');
   }
